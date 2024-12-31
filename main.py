@@ -1,21 +1,25 @@
-# impoorting random
 import random
 
 OPERATORS = ["+", "-", "*"]
 MIN_OPERAND = 3
 MAX_OPERAND = 12
-
-#generating the math problem
+TOTAL_PROB = 10
+# generating the problem for the user
 def generate_problem():
-    left = random.randint(MAX_OPERAND, MAX_OPERAND)
+    left = random.randint(MIN_OPERAND, MAX_OPERAND)
     right = random.randint(MIN_OPERAND, MAX_OPERAND)
     operator = random.choice(OPERATORS)
 
-    expr = str(left) + operator + str(right)
-    # eval: evaluates a string as a python expression, we put expr into eval() and it will give us the answer of the random equation
+    expr = f"{left} {operator} {right}"
     answer = eval(expr)
     return expr, answer
 
-
-expr, answer = generate_problem()
-print(expr, answer)
+for i in range(TOTAL_PROB):
+    expr, answer = generate_problem()
+    while True:
+        guess = input(f"Problem #{i + 1}: {expr} = ")
+        if guess == str(answer):
+            print("Correct!")
+            break
+        else:
+            print("Try again.")
