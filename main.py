@@ -1,4 +1,6 @@
+# importing random and time
 import random
+import time
 
 OPERATORS = ["+", "-", "*"]
 MIN_OPERAND = 3
@@ -16,10 +18,13 @@ def generate_problem():
 
 for i in range(TOTAL_PROB):
     expr, answer = generate_problem()
+    start_time = time.time() #timer starts
     while True:
         guess = input(f"Problem #{i + 1}: {expr} = ")
         if guess == str(answer):
-            print("Correct!")
+            end_time = time.time() # stops the timer
+            time_taken = end_time - start_time
+            print(f"Correct! Time Taken: {time_taken} seconds!!")
             break
         else:
             print("Try again.")
